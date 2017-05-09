@@ -60,7 +60,7 @@ public class CallHandler {
 			emp.callHandled(call);
 		} else {
 			// place the call into corresponding incoming calls queue according to its level
-			call.noticeCallToWait();
+			call.notifyCallerToWait();
 			incomingCallsQueues[call.getLevel()].add(call);
 		}
 	}

@@ -8,12 +8,23 @@ import java.util.Random;
 public class CallHandler {
 	private static final int TOTAL_LEVELS = EmployLevel.values().length;
 
+	/**
+	 * Store the current employees with level
+	 */
 	@SuppressWarnings("unchecked")
 	private ArrayList<Employee>[] currentEmployeeWithLevel = new ArrayList[TOTAL_LEVELS];
 
+	/**
+	 * Store the incoming calls
+	 */
 	@SuppressWarnings("unchecked")
 	private Queue<Call>[] incomingCallsQueues = new LinkedList[TOTAL_LEVELS];
 
+	/**
+	 * Constructor of CallHandler
+	 * 
+	 * @param numOfFreshers the number of freshers
+	 */
 	public CallHandler(int numOfFreshers) {
 		// create freshers
 		ArrayList<Employee> freshers = new ArrayList<>(numOfFreshers);
@@ -38,6 +49,12 @@ public class CallHandler {
 		}
 	}
 
+	/**
+	 * Get the available employee
+	 * 
+	 * @param call incoming call
+	 * @return employee the available emplyee
+	 */
 	private Employee getCallHandler(Call call) {
 		for (int level = call.getLevel(); level < TOTAL_LEVELS; level++) {
 			ArrayList<Employee> employeeLevel = currentEmployeeWithLevel[level];

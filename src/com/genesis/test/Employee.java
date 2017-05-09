@@ -15,6 +15,10 @@ public class Employee {
 		this.callHandler = callHandler;
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+	
 	public int getLevel() {
 		return this.level;
 	}
@@ -25,11 +29,11 @@ public class Employee {
 	
 	public void receiveCall(Call call) {
 		this.free = false;
-		System.out.println(name + " receive " + call.getId());
+		System.out.println("---> [" + name + "] receive [" + call.getId() + "]");
 	}
 	
 	public void callHandled(Call call) {
-		System.out.println(name + " handled " + call.getId());
+		System.out.println("<--- [" + name + "] handled [" + call.getId() + "]");
 		call.disconnect(name);
 		this.free = true;
 		callHandler.getNextCall(this);

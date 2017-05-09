@@ -5,7 +5,7 @@ public class Call {
 	private int level = 0; // minimal level of employee who can handle this call
 	
 	public Call(int id, EmployLevel minimalPosCanHandler) {
-		this.id = "Call_" + id;
+		this.id = "Call_" + id + "_For_" + minimalPosCanHandler;
 		this.level = minimalPosCanHandler.getLevel();
 	}
 	
@@ -21,12 +21,12 @@ public class Call {
 		return this.level;
 	}
 
-	public void reply(String message) {
-		System.out.println(message);
+	public void noticeCallToWait() {
+		System.out.println("#### [" + this.id + "] Please wait for free employee ####");
 	}
 
 	public void disconnect(String empName) {
-		reply("[" + this.id + "] " + empName + " thanks for your calling");
+		System.out.println("===> [" + empName + "] thanks for your calling [" + this.id + "]");
 	}
 
 }

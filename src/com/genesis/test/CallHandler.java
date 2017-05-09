@@ -3,10 +3,11 @@ package com.genesis.test;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 public class CallHandler {
 	private static final int TOTAL_LEVELS = EmployLevel.values().length;
-	
+
 	@SuppressWarnings("unchecked")
 	private ArrayList<Employee>[] currentEmployeeWithLevel = new ArrayList[TOTAL_LEVELS];
 
@@ -16,7 +17,7 @@ public class CallHandler {
 	public CallHandler(int numOfFreshers) {
 		// create freshers
 		ArrayList<Employee> freshers = new ArrayList<>(numOfFreshers);
-		for (int i = 0; i < numOfFreshers; i++) {
+		for (int i = 1; i <= numOfFreshers; i++) {
 			freshers.add(new Fresher("Fresher_" + i, this));
 		}
 		currentEmployeeWithLevel[0] = freshers;
@@ -30,7 +31,7 @@ public class CallHandler {
 		ArrayList<Employee> pms = new ArrayList<>(1);
 		pms.add(new ProductManager(this));
 		currentEmployeeWithLevel[2] = pms;
-		
+
 		// create incomingCallsQueues instances
 		for (int i = 0; i < TOTAL_LEVELS; i++) {
 			incomingCallsQueues[i] = new LinkedList<Call>();
@@ -38,7 +39,7 @@ public class CallHandler {
 	}
 
 	private Employee getCallHandler(Call call) {
-		for (int level = call.getLevel(); level < TOTAL_LEVELS - 1; level++) {
+		for (int level = call.getLevel(); level < TOTAL_LEVELS; level++) {
 			ArrayList<Employee> employeeLevel = currentEmployeeWithLevel[level];
 			for (Employee emp : employeeLevel) {
 				if (emp.isFree()) {
@@ -55,11 +56,22 @@ public class CallHandler {
 		Employee emp = getCallHandler(call);
 		if (emp != null) {
 			emp.receiveCall(call);
+			employeeCommunicating(emp.getName());
 			emp.callHandled(call);
 		} else {
 			// place the call into corresponding incoming calls queue according to its level
-			call.reply(">>>>> Please wait for free employee <<<<<");
+			call.noticeCallToWait();
 			incomingCallsQueues[call.getLevel()].add(call);
+		}
+	}
+
+	private void employeeCommunicating(String empName) {
+		System.out.println("@@@@ [" + empName + "] communicating @@@@");
+		Random ran = new Random();
+		int ranNum = ran.nextInt(5) + 1;
+		try {
+			Thread.sleep(1000 * ranNum);
+		} catch (InterruptedException e) {
 		}
 	}
 

@@ -9,13 +9,15 @@ public class TestClass {
 		int id = 1;
 		
 		Call[] incomingCalls = new Call[] {
-			new Call(id++, EmployLevel.Fresher),
-			new Call(id++, EmployLevel.Fresher),
 			new Call(id++, EmployLevel.TechnicalLead),
+			new Call(id++, EmployLevel.TechnicalLead),
+			new Call(id++, EmployLevel.Fresher),
+			new Call(id++, EmployLevel.Fresher),
 			new Call(id++, EmployLevel.ProductManager),
 			new Call(id++, EmployLevel.Fresher),
 			new Call(id++, EmployLevel.Fresher),
 			new Call(id++, EmployLevel.Fresher),
+			new Call(id++, EmployLevel.ProductManager),
 			new Call(id++, EmployLevel.Fresher),
 		};
 		

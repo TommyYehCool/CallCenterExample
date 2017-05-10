@@ -39,12 +39,4 @@ public class Employee {
 		callHandler.getNextCall(this);
 	}
 
-	public void cannotHandle(Call call) {
-		call.setLevel(level + 1);
-        callHandler.dispatchCall(call);
-        this.free = true;
-        // look if there is a call waiting in queue
-        callHandler.getNextCall(this);
-	}
-	
 }

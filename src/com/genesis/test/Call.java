@@ -1,5 +1,8 @@
 package com.genesis.test;
 
+/**
+ * Define the incoming call
+ */
 public class Call {
 	/**
 	 * The id of the call
@@ -10,7 +13,7 @@ public class Call {
 	 */
 	private int level = 0;
 	
-	public Call(int id, EmployLevel minimalPosCanHandler) {
+	public Call(int id, EmployeeLevel minimalPosCanHandler) {
 		this.id = "Call_" + id + "_For_" + minimalPosCanHandler;
 		this.level = minimalPosCanHandler.getLevel();
 	}

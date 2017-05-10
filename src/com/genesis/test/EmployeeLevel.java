@@ -1,6 +1,9 @@
 package com.genesis.test;
 
-public enum EmployLevel {
+/**
+ * Define all of the employees and his/her level 
+ */
+public enum EmployeeLevel {
 	Fresher(0),
 	
 	TechnicalLead(1),
@@ -9,7 +12,7 @@ public enum EmployLevel {
 	
 	private int level;
 	
-	private EmployLevel(int level) {
+	private EmployeeLevel(int level) {
 		this.level = level;
 	}
 	
